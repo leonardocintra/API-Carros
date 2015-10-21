@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 
 public class CarroDAO extends BaseDAO {
 	public Carro getCarroById(Long id) throws SQLException{
@@ -111,7 +113,7 @@ public class CarroDAO extends BaseDAO {
 		return carros;
 	}
 
-	private Carro createCarro(ResultSet rs) throws SQLException {
+	public Carro createCarro(ResultSet rs) throws SQLException {
 		Carro c = new Carro();
 		c.setId(rs.getLong("id"));
 		c.setNome(rs.getString("nome"));
@@ -123,5 +125,77 @@ public class CarroDAO extends BaseDAO {
 		c.setTipo(rs.getString("tipo"));
 				
 		return c;
+	}
+	
+	public void save(Carro c) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try{
+			conn = getConnection();
+			if (c.getId() == null){
+				stmt = conn.prepareStatement("insert into carro (nome, descricao, url_foto, url_video, latitude, longitude, tipo) values(?,?,?,?,?,?,?)", 
+						Statement.RETURN_GENERATED_KEYS);
+			}
+			else{
+				stmt = conn.prepareStatement("update carro set nome=?, descricao=?, url_foto=?, url_video=?, latitude=?, longitude=?, tipo=? where id=?");
+			}
+			stmt.setString(1, c.getNome());
+			stmt.setString(2, c.getDesc());
+			stmt.setString(3, c.getUrlFoto());
+			stmt.setString(4, c.getUrlVideo());
+			stmt.setString(5, c.getLatitude());
+			stmt.setString(6, c.getLongitude());
+			stmt.setString(7, c.getTipo());
+			if(c.getId() != null){
+				// update
+				stmt.setLong(8, c.getId());
+			}
+			int count = stmt.executeUpdate();
+			if (count == 0){
+				throw new SQLException("Erro ao inserir o carro");
+			}
+			// se inseriu ler o auto incremento
+			if(c.getId() == null){
+				Long id = getGeneratedId(stmt);
+				c.setId(id);
+			}			
+		}
+		finally{
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		}
+	}
+
+	public static Long getGeneratedId(PreparedStatement stmt) throws SQLException {
+		ResultSet rs = stmt.getGeneratedKeys();
+		if (rs.next()){
+			Long id = rs.getLong(1);
+			return id;
+		}
+		
+		return 0L;
+	}
+	
+	public boolean delete(Long id) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try{
+			conn = getConnection();
+			stmt = conn.prepareStatement("delete from carro where id = ?");
+			stmt.setLong(1, id);
+			int count = stmt.executeUpdate();
+			boolean ok = count > 0;
+			return ok;
+		}
+		finally{
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		}
 	}
 }
