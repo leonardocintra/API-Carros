@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 import br.com.livro.domain.Carro;
 import br.com.livro.domain.CarroService;
 import br.com.livro.domain.ListaCarros;
-import br.com.livro.util.JAXBUtil;
+import br.com.livro.util.RegexUtil;
 import br.com.livro.util.ServletUtil;
 
 
@@ -26,14 +26,25 @@ public class CarroServlet extends HttpServlet {
        
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Carro> carros = carroService.getCarros();
-		ListaCarros lista = new ListaCarros();
-		lista.setCarros(carros);
-		// gera o JSON
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String json = gson.toJson(lista);
-		ServletUtil.writeJSON(response, json);
+		String requestUri = request.getRequestURI();
+		Long id = RegexUtil.matchId(requestUri);
+		
+		if (id != null){
+			Carro carro = carroService.getCarro(id);
+			if (carro != null){
+				Gson gson = new GsonBuilder().setPrettyPrinting().create();
+				String json = gson.toJson(carro);
+				ServletUtil.writeJSON(response, json);
+			}
+			else{
+				response.sendError(404, "Carro não encontrado");
+			}
+		}
+		else{
+			List<Carro> carros = carroService.getCarros();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String json = gson.toJson(carros);
+			ServletUtil.writeJSON(response, json);
+		}
 	}
-
-
 }
