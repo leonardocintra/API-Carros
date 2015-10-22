@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import br.com.livro.domain.Carro;
 import br.com.livro.domain.CarroService;
 import br.com.livro.domain.ListaCarros;
@@ -27,7 +30,8 @@ public class CarroServlet extends HttpServlet {
 		ListaCarros lista = new ListaCarros();
 		lista.setCarros(carros);
 		// gera o JSON
-		String json = JAXBUtil.toJSON(lista);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(lista);
 		ServletUtil.writeJSON(response, json);
 	}
 
