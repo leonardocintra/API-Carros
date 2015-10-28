@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+C:\GitHub\API-Carros\API-Maven\.metadata\.plugins\org.eclipse.jdt.core
+3920492869.index
