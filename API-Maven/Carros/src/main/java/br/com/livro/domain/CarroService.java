@@ -3,7 +3,9 @@ package br.com.livro.domain;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CarroService {
 	private CarroDAO db = new CarroDAO();
 
