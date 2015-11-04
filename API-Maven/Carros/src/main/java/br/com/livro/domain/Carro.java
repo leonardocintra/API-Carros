@@ -15,7 +15,6 @@ public class Carro implements Serializable {
 	private String urlVideo;
 	private String latitude;
 	private String longitude;
-	
 	public Long getId() {
 		return id;
 	}
@@ -64,12 +63,8 @@ public class Carro implements Serializable {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-	
 	@Override
 	public String toString() {
-		return "Carro [id= " + id + ", tipo=" + tipo + ", nome= " + nome + ", desc=" + desc + 
-				", urlFoto=" + urlFoto + ", urlVideo=" + urlVideo + ", latitude=" + latitude +
-				", logitude=" + longitude + "]";
+		return "Carro [id=" + id + ", tipo=" + tipo + ", nome=" + nome + ", desc=" + desc + ", urlFoto=" + urlFoto + ", urlVideo=" + urlVideo + ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
-
 }

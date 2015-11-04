@@ -343,3 +343,28 @@ org.eclipse.core.runtime.OperationCanceledException: null
 	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager$1.run(NexusIndexManager.java:656) [org.eclipse.m2e.core_1.6.2.20150902-0002.jar:na]
 	at org.eclipse.m2e.core.internal.index.nexus.IndexUpdaterJob.run(IndexUpdaterJob.java:72) [org.eclipse.m2e.core_1.6.2.20150902-0002.jar:na]
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2015-10-29 20:30:09,321 [Worker-7] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|https://repo.maven.apache.org/maven2
+2015-10-29 20:30:19,356 [Worker-10] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: br.com.livro:carros:0.0.1-SNAPSHOT @ C:\GitHub\API-Carros\API-Maven\Carros\pom.xml.
+2015-10-29 20:30:21,959 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-29 20:30:21,968 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\GitHub\API-Carros\API-Maven\Carros\src\main\resources
+2015-10-29 20:30:21,972 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-29 20:30:22,004 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\GitHub\API-Carros\API-Maven\Carros\src\test\resources
+2015-10-29 20:30:22,035 [Worker-10] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of Carros
+2015-10-29 20:30:22,036 [Worker-10] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for Carros
+2015-10-29 20:30:22,045 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-29 20:30:24,178 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-29 20:30:24,309 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\GitHub\API-Carros\API-Maven\Carros\src\main\resources
+2015-10-29 20:30:24,313 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-10-29 20:30:24,344 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\GitHub\API-Carros\API-Maven\Carros\src\test\resources
+2015-10-29 20:31:49,089 [Worker-7] ERROR o.e.m.c.i.i.nexus.NexusIndexManager - Unable to update index for central|https://repo.maven.apache.org/maven2
+org.eclipse.core.runtime.OperationCanceledException: null
+	at org.eclipse.m2e.core.internal.index.nexus.AetherClientResourceFetcher.retrieve(AetherClientResourceFetcher.java:90) ~[org.eclipse.m2e.core_1.6.2.20150902-0002.jar:na]
+	at org.apache.maven.index.updater.AbstractResourceFetcher.retrieve(AbstractResourceFetcher.java:35) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater$LocalCacheIndexAdaptor.setIndexFile(DefaultIndexUpdater.java:700) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater.fetchAndUpdateIndex(DefaultIndexUpdater.java:829) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater.fetchAndUpdateIndex(DefaultIndexUpdater.java:135) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.updateRemoteIndex(NexusIndexManager.java:1127) [org.eclipse.m2e.core_1.6.2.20150902-0002.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.updateIndex(NexusIndexManager.java:1084) [org.eclipse.m2e.core_1.6.2.20150902-0002.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager$1.run(NexusIndexManager.java:656) [org.eclipse.m2e.core_1.6.2.20150902-0002.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.IndexUpdaterJob.run(IndexUpdaterJob.java:72) [org.eclipse.m2e.core_1.6.2.20150902-0002.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
