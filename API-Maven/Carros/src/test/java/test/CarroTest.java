@@ -2,21 +2,21 @@ package test;
 
 import java.util.List;
 
+import junit.framework.TestCase;
 import br.com.livro.domain.Carro;
 import br.com.livro.domain.CarroService;
-import junit.framework.TestCase;
 
 public class CarroTest extends TestCase {
 	private CarroService carroService;
-	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		// crea o "bean" pelo Spring
+		// Cria o "bean" pelo Spring.
 		carroService = (CarroService) SpringUtil.getInstance().getBean(CarroService.class);
 	}
-	
-	public void testListaCarros(){
+
+
+	public void testListaCarros() {
 		List<Carro> carros = carroService.getCarros();
 		assertNotNull(carros);
 		// Valida se encontrou algo
@@ -31,7 +31,7 @@ public class CarroTest extends TestCase {
 		Carro bugatti = carroService.findByName("Bugatti Veyron").get(0);
 		assertEquals("Bugatti Veyron", bugatti.getNome());
 	}
-	
+
 	public void testSalvarDeletarCarro() {
 		Carro c = new Carro();
 		c.setNome("Teste");
@@ -67,4 +67,5 @@ public class CarroTest extends TestCase {
 		// Desta vez o carro não existe mais.
 		assertNull(c);
 	}
+
 }
