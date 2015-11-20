@@ -21,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import br.com.livro.domain.Carro;
 import br.com.livro.domain.CarroService;
 import br.com.livro.domain.Response;
+import br.com.livro.domain.ResponseWithURL;
 import br.com.livro.domain.UploadService;
 
 import org.apache.commons.io.IOUtils;
@@ -87,7 +88,7 @@ public class CarrosResource {
 
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response postFoto(final FormDataMultiPart multiPart) {
+	public ResponseWithURL postFoto(final FormDataMultiPart multiPart) {
 		Set<String> keys = multiPart.getFields().keySet();
 		for (String key : keys) {
 			// Obtem a InputStream para ler o arquivo
@@ -95,17 +96,15 @@ public class CarrosResource {
 			InputStream in = field.getValueAs(InputStream.class);
 			try {
 				String fileName = field.getFormDataContentDisposition().getFileName();
-				String path = uploadService.upload(fileName, in);
-				System.out.println("Arquivo: " + path);
+				String url = uploadService.upload(fileName, in);
+				return ResponseWithURL.Ok("Arquivo recebido com sucesso!", url);
 
-				return Response.Ok("Arquivo recebido com sucesso!");
-
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-				return Response.Error("Erro ao enviar o arquivo.");
+				return ResponseWithURL.Error("Erro ao enviar o arquivo.");
 			}
 		}
-		return Response.Ok("Requisição Inválida");
+		return ResponseWithURL.Error("Requisição inválida");
 	}
 	
 	@POST
