@@ -23,8 +23,7 @@ public class MyApplication extends Application {
 	public Map<String, Object> getProperties() {
 		Map<String, Object> properties = new HashMap<>();
 		// Configura o pacote para fazer scan das classes com anotações REST.
-		properties
-				.put("jersey.config.server.provider.packages", "br.com.livro");
+		properties.put("jersey.config.server.provider.packages", "br.com.livro");
 		return properties;
 	}
 }
